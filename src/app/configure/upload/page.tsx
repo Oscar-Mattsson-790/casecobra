@@ -1,6 +1,7 @@
 "use client";
 
 import { Progress } from "@/components/ui/progress";
+import { useToast } from "@/hooks/use-toast";
 import { useUploadThing } from "@/lib/uploadthing";
 import { cn } from "@/lib/utils";
 import { Loader2, MousePointerSquareDashed, Image } from "lucide-react";
@@ -14,7 +15,7 @@ const Page = () => {
   const [uploadProgress, setUploadProgress] = useState<number>(0);
   const router = useRouter();
 
-  const { startUpload } = useUploadThing("imageUploader", {
+  const { startUpload, isUploading } = useUploadThing("imageUploader", {
     onClientUploadComplete: ([data]) => {
       const configId = data.serverData.configId;
       startTransition(() => {
@@ -32,7 +33,9 @@ const Page = () => {
     setIsDragOver(false);
 
     toast({
-      title: `${file.file.type} type is not supported`,
+      title: `${file.file.type} type is not supported.`,
+      description: "Please choose a PNG, JPG, or JPEG image instead.",
+      variant: "destructive",
     });
   };
 
@@ -42,14 +45,15 @@ const Page = () => {
     setIsDragOver(false);
   };
 
-  const isUploading = false;
   const [isPending, startTransition] = useTransition();
 
   return (
     <div
       className={cn(
         "relative h-full flex-1 my-16 w-full rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:rounded-2xl flex justify-center flex-col items-center",
-        { "ring-blue-900/25 bg-blue-900/10": isDragOver }
+        {
+          "ring-blue-900/25 bg-blue-900/10": isDragOver,
+        }
       )}
     >
       <div className="relative flex flex-1 flex-col items-center justify-center w-full">
