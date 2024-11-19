@@ -10,9 +10,13 @@ export const ourFileRouter = {
       return { input };
     })
     .onUploadComplete(async ({ metadata, file }) => {
-      const { configId } = metadata.input;
-
-      return { configId };
+      try {
+        const { configId } = metadata.input;
+        return { configId };
+      } catch (error) {
+        console.error("Error in onUploadComplete: ", error);
+        throw error;
+      }
     }),
 } satisfies FileRouter;
 
