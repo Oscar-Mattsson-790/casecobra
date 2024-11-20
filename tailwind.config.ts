@@ -7,6 +7,20 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    "border-zinc-900",
+    "bg-zinc-900",
+    "ring-zinc-900",
+    "border-blue-950",
+    "bg-blue-950",
+    "ring-blue-950",
+    "border-rose-950",
+    "bg-rose-950",
+    "ring-rose-950",
+    "border-transparent",
+    "ring-offset-2",
+    "ring-2",
+  ],
   theme: {
     extend: {
       colors: {
