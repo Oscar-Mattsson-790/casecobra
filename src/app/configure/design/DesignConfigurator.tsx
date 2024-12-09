@@ -130,16 +130,15 @@ const DesignConfigurator = ({
                   <Label>Color: {options.color.label}</Label>
                   <div className="mt-3 flex items-center space-x-3">
                     {COLORS.map((color) => (
-                      <Radio
+                      <RadioGroup.Option
                         key={color.label}
                         value={color}
-                        className={({ checked }) =>
+                        className={({ active, checked }) =>
                           cn(
-                            "relative flex cursor-pointer items-center justify-center rounded-full p-0.5 transition",
-                            "focus:outline-none focus:ring-0",
-                            checked
-                              ? `border-${color.tw} bg-${color.tw} ring-2 ring-offset-2 ring-${color.tw}`
-                              : "border-transparent"
+                            "relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 active:ring-0 focus:ring-0 active:outline-none focus:outline-none border-2 border-transparent",
+                            {
+                              [`border-${color.tw}`]: active || checked,
+                            }
                           )
                         }
                       >
@@ -149,7 +148,7 @@ const DesignConfigurator = ({
                             "h-8 w-8 rounded-full border border-black border-opacity-10"
                           )}
                         />
-                      </Radio>
+                      </RadioGroup.Option>
                     ))}
                   </div>
                 </RadioGroup>
