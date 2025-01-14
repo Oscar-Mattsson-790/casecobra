@@ -135,11 +135,13 @@ const DesignConfigurator = ({
 
       await startUpload([file], { configId });
     } catch (err) {
-      toast({
-        title: "Something went wrong",
-        description: "There was a problem saving your config, please try gain.",
-        variant: "destructive",
-      });
+      if (err)
+        return toast({
+          title: "Something went wrong",
+          description:
+            "There was a problem saving your config, please try gain.",
+          variant: "destructive",
+        });
     }
   }
 
