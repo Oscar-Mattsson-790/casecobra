@@ -46,5 +46,6 @@ export function constructMetadata({
       creator: "@oscarmatts",
     },
     icons,
+    metadataBase: new URL("https://casecobra-five-ochre.vercel.app/"),
   };
 }
